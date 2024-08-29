@@ -1,0 +1,149 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KeyboardOverlay.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		MinWidth="400" MinHeight="225"
+        x:Class="KeyboardOverlay.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="KeyboardOverlay"
+		Opacity="100">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ShowGridLines="True">
+
+		<!--QWERT-->
+		<WrapPanel VerticalAlignment="Bottom" Grid.Row="0" Margin="0 0 0 5">
+			<Border
+				Margin="5 0 0 0"
+				Width="50"
+				Height="50"
+				BorderBrush="Cyan"
+				BorderThickness="2"
+				CornerRadius="6">
+				<TextBlock
+					FontSize="38"
+					Foreground="White"
+					FontWeight="Bold"
+					TextAlignment="Center">Q</TextBlock>
+			</Border>
+			<Border
+				Margin="5 0 0 0"
+				Width="50"
+				Height="50"
+				BorderBrush="Cyan"
+				BorderThickness="2"
+				CornerRadius="6">
+				<TextBlock
+					FontSize="38"
+					Foreground="White"
+					FontWeight="Bold"
+					TextAlignment="Center">W</TextBlock>
+			</Border>
+			<Border
+				Margin="5 0 0 0"
+				Width="50"
+				Height="50"
+				BorderBrush="Cyan"
+				BorderThickness="2"
+				CornerRadius="6">
+				<TextBlock
+					FontSize="38"
+					Foreground="White"
+					FontWeight="Bold"
+					TextAlignment="Center">E</TextBlock>
+			</Border>
+			<Border
+				Margin="5 0 0 0"
+				Width="50"
+				Height="50"
+				BorderBrush="Cyan"
+				BorderThickness="2"
+				CornerRadius="6">
+				<TextBlock
+					FontSize="38"
+					Foreground="White"
+					FontWeight="Bold"
+					TextAlignment="Center">R</TextBlock>
+			</Border>
+			<Border
+				Margin="5 0 0 0"
+				Width="50"
+				Height="50"
+				BorderBrush="Cyan"
+				BorderThickness="2"
+				CornerRadius="6">
+				<TextBlock
+					FontSize="38"
+					Foreground="White"
+					FontWeight="Bold"
+					TextAlignment="Center">T</TextBlock>
+			</Border>
+		</WrapPanel>
+		<!--QWERT-->
+
+
+		<!--ASDF-->
+		<WrapPanel VerticalAlignment="Top" Grid.Row="1" Margin="16 0 0 0">
+			<Border
+				Margin="5 0 0 0"
+				Width="50"
+				Height="50"
+				BorderBrush="Cyan"
+				BorderThickness="2"
+				CornerRadius="6" VerticalAlignment="Top">
+				<TextBlock
+					FontSize="38"
+					Foreground="White"
+					FontWeight="Bold"
+					TextAlignment="Center">A</TextBlock>
+			</Border>
+			<Border
+				Margin="5 0 0 0"
+				Width="50"
+				Height="50"
+				BorderBrush="Cyan"
+				BorderThickness="2"
+				CornerRadius="6">
+				<TextBlock
+					FontSize="38"
+					Foreground="White"
+					FontWeight="Bold"
+					TextAlignment="Center">S</TextBlock>
+			</Border>
+			<Border
+				Margin="5 0 0 0"
+				Width="50"
+				Height="50"
+				BorderBrush="Cyan"
+				BorderThickness="2"
+				CornerRadius="6">
+				<TextBlock
+					FontSize="38"
+					Foreground="White"
+					FontWeight="Bold"
+					TextAlignment="Center">D</TextBlock>
+			</Border>
+			<Border
+				Margin="5 0 0 0"
+				Width="50"
+				Height="50"
+				BorderBrush="Cyan"
+				BorderThickness="2"
+				CornerRadius="6">
+				<TextBlock
+					FontSize="38"
+					Foreground="White"
+					FontWeight="Bold"
+					TextAlignment="Center">F</TextBlock>
+			</Border>
+		</WrapPanel>
+		<!--ASDF-->
+	</Grid>
+
+</Window>
