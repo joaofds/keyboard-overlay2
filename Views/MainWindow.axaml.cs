@@ -37,20 +37,18 @@ public partial class MainWindow : Window
                 {Key.S, sButton },
                 {Key.D, dButton },
                 {Key.F, fButton },
-
-                /*
                 {Key.Space, spaceButton },
+                /*
                 {Key.NumPad1, numpad1 },
                 {Key.NumPad2, numpad2 },
                 {Key.NumPad3, numpad3 },
+                */
                 {Key.NumPad4, numpad4 },
                 {Key.NumPad5, numpad5},
                 {Key.NumPad6, numpad6 },
                 {Key.NumPad7, numpad7 },
                 {Key.NumPad8, numpad8 },
-                {Key.NumPad9, numpad9 },
-
-                */
+                {Key.NumPad9, numpad9 }
             };
     }
 
