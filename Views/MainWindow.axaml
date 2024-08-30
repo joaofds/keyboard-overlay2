@@ -3,21 +3,25 @@
         xmlns:vm="using:KeyboardOverlay.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="600" MinWidth="196"
+        mc:Ignorable="d" d:DesignWidth="600"
+		Width="600" Height="240" 
+		MaxWidth="600" MinWidth="600" MaxHeight="240" MinHeight="240"
         x:Class="KeyboardOverlay.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="KeyboardOverlay"
-		Opacity="100"
-		Width="600" Height="196">
+		Opacity="100">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
 	<Window.Styles>
+		<!--Icons-->
 		<StyleInclude Source="avares://KeyboardOverlay/Icons.axaml"/>
-		
+		<!--Icons-->
+
+		<!--Keys-->
 		<Style Selector="Border.keyButton">
 			<Setter Property="Width" Value="50"/>
 			<Setter Property="Height" Value="50"/>
@@ -35,27 +39,43 @@
 			<Setter Property="HorizontalAlignment" Value="Center"/>
 			<Setter Property="VerticalAlignment" Value="Center"/>
 		</Style>
-		
+		<!--Keys-->
+
+		<!--Numpad-->
 		<Style Selector="WrapPanel.numpad">
 			<Setter Property="Margin" Value="60 0 0 0"/>
 		</Style>
+		<!--Numpad-->
 
-		<Style Selector="WrapPanel.buttons">
-			<Setter Property="HorizontalAlignment" Value="Right"/>
-			<Setter Property="VerticalAlignment" Value="Top"/>
-			
+		<!--Button Styles-->
+		<Style Selector="Button">
+			<Setter Property="Background" Value="Black"></Setter>
+			<Setter Property="BorderBrush" Value="Cyan"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="CornerRadius" Value="6"/>
 		</Style>
-		
-		
+		<Style Selector="Button:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="Cyan"></Setter>
+		</Style>
+		<Style Selector="Button:pressed">
+			<Setter Property="RenderTransform" Value="scale(0.9)" />
+		</Style>
+		<!--Button Styles-->
 	</Window.Styles>
 
 	<Grid ColumnDefinitions="Auto,auto,Auto" ShowGridLines="False" Margin="16 16 0 0">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="auto"/>
+			<RowDefinition Height="48"/>
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
+
+		<!--Button Settings-->
+		<Button Classes="settingsButton" Width="38" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right">
+			<PathIcon Data="{StaticResource settings_regular}" />
+		</Button>
+		<!--Button Settings-->
 
 		<!--QWERT-->
 		<WrapPanel Grid.Row="1">
@@ -103,6 +123,20 @@
 		<!--SPACE-->
 
 		<!--NUMPAD-->
+		<!--
+		<WrapPanel Grid.Row="3" Grid.Column="2" Classes="numpad">
+			<Border x:Name="numpad1" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="1"/>
+			</Border>
+			<Border x:Name="numpad2" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="2"/>
+			</Border>
+			<Border x:Name="numpad3" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="3"/>
+			</Border>
+		</WrapPanel>
+		-->
+
 		<WrapPanel Grid.Row="2" Grid.Column="2" Classes="numpad">
 			<Border x:Name="numpad4" Classes="keyButton">
 				<TextBlock Classes="keyText" Text="4"/>
