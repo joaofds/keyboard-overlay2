@@ -15,74 +15,45 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
+	<Window.Styles>
+		<Style Selector="Border.keyButton">
+			<Setter Property="Width" Value="50"/>
+			<Setter Property="Height" Value="50"/>
+			<Setter Property="Margin" Value="5 0 0 0"/>
+			<Setter Property="BorderBrush" Value="Cyan"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="CornerRadius" Value="6"/>
+		</Style>
+		
+		<Style Selector="TextBlock.keyText">
+			<Setter Property="FontSize" Value="38"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="TextAlignment" Value="Center"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+		</Style>
+
+	</Window.Styles>
+
 	<Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ShowGridLines="True">
 
 		<!--QWERT-->
 		<WrapPanel VerticalAlignment="Bottom" Grid.Row="0" Margin="0 0 0 5">
-			<Border
-				Margin="5 0 0 0"
-				Width="50"
-				Height="50"
-				BorderBrush="Cyan"
-				BorderThickness="2"
-				CornerRadius="6">
-				<TextBlock
-					FontSize="38"
-					Foreground="White"
-					FontWeight="Bold"
-					TextAlignment="Center">Q</TextBlock>
+			<Border x:Name="qButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="Q"/>
 			</Border>
-			<Border
-				Margin="5 0 0 0"
-				Width="50"
-				Height="50"
-				BorderBrush="Cyan"
-				BorderThickness="2"
-				CornerRadius="6">
-				<TextBlock
-					FontSize="38"
-					Foreground="White"
-					FontWeight="Bold"
-					TextAlignment="Center">W</TextBlock>
+			<Border x:Name="wButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="W"/>
 			</Border>
-			<Border
-				Margin="5 0 0 0"
-				Width="50"
-				Height="50"
-				BorderBrush="Cyan"
-				BorderThickness="2"
-				CornerRadius="6">
-				<TextBlock
-					FontSize="38"
-					Foreground="White"
-					FontWeight="Bold"
-					TextAlignment="Center">E</TextBlock>
+			<Border x:Name="eButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="E"/>
 			</Border>
-			<Border
-				Margin="5 0 0 0"
-				Width="50"
-				Height="50"
-				BorderBrush="Cyan"
-				BorderThickness="2"
-				CornerRadius="6">
-				<TextBlock
-					FontSize="38"
-					Foreground="White"
-					FontWeight="Bold"
-					TextAlignment="Center">R</TextBlock>
+			<Border x:Name="rButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="R"/>
 			</Border>
-			<Border
-				Margin="5 0 0 0"
-				Width="50"
-				Height="50"
-				BorderBrush="Cyan"
-				BorderThickness="2"
-				CornerRadius="6">
-				<TextBlock
-					FontSize="38"
-					Foreground="White"
-					FontWeight="Bold"
-					TextAlignment="Center">T</TextBlock>
+			<Border x:Name="tButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="T"/>
 			</Border>
 		</WrapPanel>
 		<!--QWERT-->
@@ -90,57 +61,17 @@
 
 		<!--ASDF-->
 		<WrapPanel VerticalAlignment="Top" Grid.Row="1" Margin="16 0 0 0">
-			<Border
-				Margin="5 0 0 0"
-				Width="50"
-				Height="50"
-				BorderBrush="Cyan"
-				BorderThickness="2"
-				CornerRadius="6" VerticalAlignment="Top">
-				<TextBlock
-					FontSize="38"
-					Foreground="White"
-					FontWeight="Bold"
-					TextAlignment="Center">A</TextBlock>
+			<Border x:Name="aButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="A"/>
 			</Border>
-			<Border
-				Margin="5 0 0 0"
-				Width="50"
-				Height="50"
-				BorderBrush="Cyan"
-				BorderThickness="2"
-				CornerRadius="6">
-				<TextBlock
-					FontSize="38"
-					Foreground="White"
-					FontWeight="Bold"
-					TextAlignment="Center">S</TextBlock>
+			<Border x:Name="sButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="S"/>
 			</Border>
-			<Border
-				Margin="5 0 0 0"
-				Width="50"
-				Height="50"
-				BorderBrush="Cyan"
-				BorderThickness="2"
-				CornerRadius="6">
-				<TextBlock
-					FontSize="38"
-					Foreground="White"
-					FontWeight="Bold"
-					TextAlignment="Center">D</TextBlock>
+			<Border x:Name="dButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="D"/>
 			</Border>
-			<Border
-				Margin="5 0 0 0"
-				Width="50"
-				Height="50"
-				BorderBrush="Cyan"
-				BorderThickness="2"
-				CornerRadius="6">
-				<TextBlock
-					FontSize="38"
-					Foreground="White"
-					FontWeight="Bold"
-					TextAlignment="Center">F</TextBlock>
+			<Border x:Name="fButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="F"/>
 			</Border>
 		</WrapPanel>
 		<!--ASDF-->
