@@ -1,25 +1,14 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KeyboardOverlay.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		x:Class="KeyboardOverlay.Views.SettingsWindow"
+        mc:Ignorable="d"
+		MaxWidth="400" MinWidth="400" MaxHeight="480" MinHeight="480"
+        x:Class="KeyboardOverlay.Views.SettingsWindow"
         x:DataType="vm:SettingsWindowViewModel"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        Title="SettingsWindow">
-
-	<StackPanel Margin="20">
-		<TextBlock Text="Configurações de Cores" FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
-
-		<TextBlock Text="Cor da Fonte:"/>
-		<ColorPicker x:Name="FontColorPicker" Margin="0,5,0,15" SelectedColorChanged="OnFontColorChanged"/>
-
-		<TextBlock Text="Cor da Borda:"/>
-		<ColorPicker x:Name="BorderColorPicker" Margin="0,5,0,15" SelectedColorChanged="OnBorderColorChanged"/>
-
-		<TextBlock Text="Cor de Fundo:"/>
-		<ColorPicker x:Name="BackgroundColorPicker" Margin="0,5,0,15" SelectedColorChanged="OnBackgroundColorChanged"/>
-
-		<Button Content="Salvar Configurações" Click="SaveButton_Click"/>
-	</StackPanel>
+		WindowStartupLocation="CenterOwner"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Settings">
 	
 </Window>

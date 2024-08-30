@@ -23,45 +23,7 @@ namespace KeyboardOverlay.Views
             {
                 var json = File.ReadAllText(ConfigFilePath);
                 var config = JsonConvert.DeserializeObject<AppConfig>(json);
-
-                FontColorPicker.SelectedColor = config.FontColor;
-                BorderColorPicker.SelectedColor = config.BorderColor;
-                BackgroundColorPicker.SelectedColor = config.BackgroundColor;
-
-                _fontColor = config.FontColor;
-                _borderColor = config.BorderColor;
-                _backgroundColor = config.BackgroundColor;
             }
-        }
-
-        private void OnFontColorChanged(object sender, EventArgs e)
-        {
-            _fontColor = ((ColorPicker)sender).SelectedColor ?? Colors.White;
-        }
-
-        private void OnBorderColorChanged(object sender, EventArgs e)
-        {
-            _borderColor = ((ColorPicker)sender).SelectedColor ?? Colors.Cyan;
-        }
-
-        private void OnBackgroundColorChanged(object sender, EventArgs e)
-        {
-            _backgroundColor = ((ColorPicker)sender).SelectedColor ?? Colors.Black;
-        }
-
-        private void SaveButton_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
-        {
-            var config = new AppConfig
-            {
-                FontColor = _fontColor,
-                BorderColor = _borderColor,
-                BackgroundColor = _backgroundColor
-            };
-
-            var json = JsonConvert.SerializeObject(config, Formatting.Indented);
-            File.WriteAllText(ConfigFilePath, json);
-
-            this.Close();
         }
     }
 

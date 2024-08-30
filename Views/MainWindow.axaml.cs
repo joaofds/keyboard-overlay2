@@ -38,11 +38,9 @@ public partial class MainWindow : Window
                 {Key.D, dButton },
                 {Key.F, fButton },
                 {Key.Space, spaceButton },
-                /*
                 {Key.NumPad1, numpad1 },
                 {Key.NumPad2, numpad2 },
                 {Key.NumPad3, numpad3 },
-                */
                 {Key.NumPad4, numpad4 },
                 {Key.NumPad5, numpad5},
                 {Key.NumPad6, numpad6 },
@@ -70,5 +68,11 @@ public partial class MainWindow : Window
         {
             keyButtonMap[e.Key].Background = Brushes.Black;
         }
+    }
+
+    private void SettingsButton_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        var settingsWindow = new SettingsWindow();
+        settingsWindow.ShowDialog(this);
     }
 }
