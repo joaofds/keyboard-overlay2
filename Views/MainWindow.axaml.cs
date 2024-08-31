@@ -4,6 +4,8 @@ using Avalonia.Input;
 using System.Collections.Generic;
 using Avalonia.Media;
 using System.IO;
+using Newtonsoft.Json;
+using KeyboardOverlay.Views;
 
 namespace KeyboardOverlay.Views;
 
@@ -12,10 +14,42 @@ public partial class MainWindow : Window
     // Dicionario para guardar teclas.
     private Dictionary<Key, Border> keyButtonMap = null!;
 
+    // Arquivo de configuração
+    private const string? ConfigFilePath = "config.json";
+
+    // Guarda configurações atuais
+    public AppSettings? Config = null;
+
     public MainWindow()
     {
         InitializeComponent();
         InitializeKeyButtonMap();
+            
+            if (File.Exists(ConfigFilePath))
+            {
+                // Lê arquivo
+                var json = File.ReadAllText(ConfigFilePath);
+
+                // Converte o json
+                var config = JsonConvert.DeserializeObject<AppSettings>(json);
+                
+                // Atribui para Config
+                Config = config;
+
+                // Troca as cores
+                this.Background = new SolidColorBrush(Color.Parse(config.BackgroundColor));
+                settingsButton.BorderBrush = new SolidColorBrush(Color.Parse(config.BorderColor));
+
+                foreach (var button in keyButtonMap.Values)
+                {
+                    button.BorderBrush = new SolidColorBrush(Color.Parse(config.BorderColor));
+
+                    if (button.Child is TextBlock textBlock)
+                    {
+                        textBlock.Foreground = new SolidColorBrush(Color.Parse(config.FontColor));
+                    }
+                }
+            }
 
         // Registra manipuladores de eventos
         this.AddHandler(KeyDownEvent, Main_Window_KeyDown, handledEventsToo: true);
@@ -55,7 +89,7 @@ public partial class MainWindow : Window
     {
         if (keyButtonMap.ContainsKey(e.Key))
         {
-            keyButtonMap[e.Key].Background = Brushes.Cyan;
+            keyButtonMap[e.Key].Background = new SolidColorBrush(Color.Parse(Config.HoverColor));
 
         }
     }
@@ -66,7 +100,7 @@ public partial class MainWindow : Window
     {
         if (keyButtonMap.ContainsKey(e.Key))
         {
-            keyButtonMap[e.Key].Background = Brushes.Black;
+            keyButtonMap[e.Key].Background = new SolidColorBrush(Color.Parse(Config.BackgroundColor));
         }
     }
 
