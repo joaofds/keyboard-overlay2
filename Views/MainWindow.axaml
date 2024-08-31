@@ -10,6 +10,7 @@
         x:DataType="vm:MainWindowViewModel"
 		WindowStartupLocation="CenterOwner"
         Icon="/Assets/avalonia-logo.ico"
+		Background="{Binding BackgroundColor}"
         Title="KeyboardOverlay">
 
     <Design.DataContext>
@@ -26,14 +27,14 @@
 			<Setter Property="Width" Value="50"/>
 			<Setter Property="Height" Value="50"/>
 			<Setter Property="Margin" Value="5 0 0 4"/>
-			<Setter Property="BorderBrush" Value="Cyan"/>
+			<Setter Property="BorderBrush" Value="{Binding BorderColor}"/>
 			<Setter Property="BorderThickness" Value="2"/>
 			<Setter Property="CornerRadius" Value="6"/>
 		</Style>
 		
 		<Style Selector="TextBlock.keyText">
 			<Setter Property="FontSize" Value="38"/>
-			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Foreground" Value="{Binding FontColor}"/>
 			<Setter Property="FontWeight" Value="Bold"/>
 			<Setter Property="TextAlignment" Value="Center"/>
 			<Setter Property="HorizontalAlignment" Value="Center"/>
@@ -49,14 +50,19 @@
 
 		<!--Button Styles-->
 		<Style Selector="Button">
+			<Setter Property="Background" Value="{Binding BackgroundColor}"/>
+			<Setter Property="BorderBrush" Value="{Binding BorderColor}"/>
 			<Setter Property="BorderThickness" Value="2"/>
 			<Setter Property="CornerRadius" Value="6"/>
 		</Style>
 		<Style Selector="Button:pointerover /template/ ContentPresenter">
-			<Setter Property="Background" Value="Cyan"></Setter>
+			<Setter Property="Background" Value="{Binding HoverColor}"></Setter>
 		</Style>
 		<Style Selector="Button:pressed">
 			<Setter Property="RenderTransform" Value="scale(0.9)" />
+		</Style>
+		<Style Selector="PathIcon.settings_regular">
+			<Setter Property="Foreground" Value="{Binding FontColor}"></Setter>
 		</Style>
 		<!--Button Styles-->
 	</Window.Styles>
@@ -77,7 +83,7 @@
 				Grid.Column="2" 
 				HorizontalAlignment="Right"
 				Focusable="False">
-			<PathIcon Data="{StaticResource settings_regular}" />
+			<PathIcon Classes="settings_regular" Data="{StaticResource settings_regular}" />
 		</Button>
 		<!--Button Settings-->
 
