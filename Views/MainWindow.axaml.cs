@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using Avalonia.Media;
 using System.IO;
 using Newtonsoft.Json;
-using KeyboardOverlay.Views;
 
 namespace KeyboardOverlay.Views;
 
@@ -24,6 +23,8 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         InitializeKeyButtonMap();
+        SettingsWindow loadSettings = new SettingsWindow();
+        loadSettings.LoadSettings();
             
             if (File.Exists(ConfigFilePath))
             {
@@ -37,16 +38,16 @@ public partial class MainWindow : Window
                 Config = config;
 
                 // Troca as cores
-                this.Background = new SolidColorBrush(Color.Parse(config.BackgroundColor));
-                settingsButton.BorderBrush = new SolidColorBrush(Color.Parse(config.BorderColor));
+                this.Background = new SolidColorBrush(Color.Parse(config?.BackgroundColor!));
+                settingsButton.BorderBrush = new SolidColorBrush(Color.Parse(config?.BorderColor!));
 
                 foreach (var button in keyButtonMap.Values)
                 {
-                    button.BorderBrush = new SolidColorBrush(Color.Parse(config.BorderColor));
+                    button.BorderBrush = new SolidColorBrush(Color.Parse(config?.BorderColor!));
 
                     if (button.Child is TextBlock textBlock)
                     {
-                        textBlock.Foreground = new SolidColorBrush(Color.Parse(config.FontColor));
+                        textBlock.Foreground = new SolidColorBrush(Color.Parse(config?.FontColor!));
                     }
                 }
             }
@@ -89,7 +90,7 @@ public partial class MainWindow : Window
     {
         if (keyButtonMap.ContainsKey(e.Key))
         {
-            keyButtonMap[e.Key].Background = new SolidColorBrush(Color.Parse(Config.HoverColor));
+            keyButtonMap[e.Key].Background = new SolidColorBrush(Color.Parse(Config?.HoverColor!));
 
         }
     }
@@ -100,7 +101,7 @@ public partial class MainWindow : Window
     {
         if (keyButtonMap.ContainsKey(e.Key))
         {
-            keyButtonMap[e.Key].Background = new SolidColorBrush(Color.Parse(Config.BackgroundColor));
+            keyButtonMap[e.Key].Background = new SolidColorBrush(Color.Parse(Config?.BackgroundColor!));
         }
     }
 

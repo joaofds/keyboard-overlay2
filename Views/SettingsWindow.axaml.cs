@@ -16,13 +16,13 @@ namespace KeyboardOverlay.Views
             LoadSettings();
         }
 
-        private void LoadSettings()
+        public void LoadSettings()
         {
             if (File.Exists("config.json"))
             {
                 var json = File.ReadAllText("config.json");
                 var settings = JsonConvert.DeserializeObject<AppSettings>(json);
-                ApplySettings(settings);
+                ApplySettings(settings!);
             }
             else
             {
@@ -48,9 +48,9 @@ namespace KeyboardOverlay.Views
         private void ApplySettings(AppSettings settings)
         {
             // Exemplo de aplicação das configurações de cor em elementos da interface
-            var fontColorBrush = new SolidColorBrush(Color.Parse(settings.FontColor));
-            var borderColorBrush = new SolidColorBrush(Color.Parse(settings.BorderColor));
-            var backgroundColorBrush = new SolidColorBrush(Color.Parse(settings.BackgroundColor));
+            var fontColorBrush = new SolidColorBrush(Color.Parse(settings.FontColor!));
+            var borderColorBrush = new SolidColorBrush(Color.Parse(settings.BorderColor!));
+            var backgroundColorBrush = new SolidColorBrush(Color.Parse(settings.BackgroundColor!));
 
             // Aqui podemos aplicar as cores aos elementos da interface
             // Exemplo:
