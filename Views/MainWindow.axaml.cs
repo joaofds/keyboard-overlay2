@@ -110,4 +110,9 @@ public partial class MainWindow : Window
         var settingsWindow = new SettingsWindow();
         settingsWindow.ShowDialog(this);
     }
+
+    public Dictionary<Key, Border> GetKeys()
+    {
+        return keyButtonMap;
+    }
 }

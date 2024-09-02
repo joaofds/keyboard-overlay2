@@ -35,12 +35,19 @@
 
 		<WrapPanel Grid.Row="0" Grid.Column="0">
 			<TextBlock Text="Cor da Fonte: "/>
-			<ColorPicker />
+			<ColorPicker x:Name="SelectedFontColor"/>
 		</WrapPanel>
 
 		<WrapPanel Grid.Row="1" Grid.Column="0">
-			<TextBlock Text="Cor da Fonte: "/>
-			<ColorPicker x:Name="FontColor"/>
+			<TextBlock Text="Cor do Fundo: "/>
+			<ColorPicker x:Name="SelectedBackColor"/>
 		</WrapPanel>
+		
+		<WrapPanel Grid.Row="2" Grid.Column="0">
+			<TextBlock Text="Cor do Hover: "/>
+			<ColorPicker x:Name="SelectedHoverColor"/>
+		</WrapPanel>
+
+		<Button Grid.Row="3" Click="Btn_Event_Test">Cick Me</Button>
 	</Grid>
 </Window>

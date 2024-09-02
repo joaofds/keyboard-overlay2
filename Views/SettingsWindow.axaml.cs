@@ -1,9 +1,12 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using KeyboardOverlay.Services;
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.IO;
+using KeyboardOverlay.Views;
 
 namespace KeyboardOverlay.Views
 {
@@ -26,6 +29,15 @@ namespace KeyboardOverlay.Views
 
             //_settingsService.SaveSettings(newSettings);
             //_settingsService.ApplySettings(newSettings);
+        }
+
+        public void Btn_Event_Test(object? source, RoutedEventArgs e)
+        {
+            var appSettings = SettingsService.appSettings;
+            var SelectedFontColor = this.SelectedFontColor;
+
+            Debug.Print(SelectedFontColor.HsvColor);
+            
         }
     }
 }
