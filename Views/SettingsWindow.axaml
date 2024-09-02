@@ -1,14 +1,46 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:KeyboardOverlay.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:colorpicker="clr-namespace:AvaloniaColorPicker;assembly=AvaloniaColorPicker"
+        xmlns:vm="using:KeyboardOverlay.ViewModels"
         mc:Ignorable="d"
 		MaxWidth="400" MinWidth="400" MaxHeight="480" MinHeight="480"
         x:Class="KeyboardOverlay.Views.SettingsWindow"
         x:DataType="vm:SettingsWindowViewModel"
 		WindowStartupLocation="CenterOwner"
         Icon="/Assets/avalonia-logo.ico"
+		Background="#313338"
         Title="Settings">
-	
+
+	<Window.Styles>
+		<StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Simple/Simple.xaml" />
+		
+		<Style Selector="ColorPicker">
+			<Setter Property="IsColorPaletteVisible" Value="False"/>
+			<Setter Property="IsColorPreviewVisible" Value="False"/>
+			<Setter Property="IsColorComponentsVisible" Value="False"/>
+			<Setter Property="IsAlphaVisible" Value="False"/>
+			<Setter Property="CornerRadius" Value="8"/>
+		</Style>
+	</Window.Styles>
+
+	<Grid ColumnDefinitions="Auto,Auto,Auto,Auto" ShowGridLines="False" Margin="0 0 0 0" HorizontalAlignment="Center">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<WrapPanel Grid.Row="0" Grid.Column="0">
+			<TextBlock Text="Cor da Fonte: "/>
+			<ColorPicker />
+		</WrapPanel>
+
+		<WrapPanel Grid.Row="1" Grid.Column="0">
+			<TextBlock Text="Cor da Fonte: "/>
+			<ColorPicker x:Name="FontColor"/>
+		</WrapPanel>
+	</Grid>
 </Window>
