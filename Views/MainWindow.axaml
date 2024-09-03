@@ -34,7 +34,7 @@
 		
 		<Style Selector="TextBlock.keyText">
 			<Setter Property="FontSize" Value="38"/>
-			<Setter Property="Foreground" Value="{DynamicResource FontColor}"/>
+			<Setter Property="Foreground" Value="{Binding FontColor}"/>
 			<Setter Property="FontWeight" Value="Bold"/>
 			<Setter Property="TextAlignment" Value="Center"/>
 			<Setter Property="HorizontalAlignment" Value="Center"/>
