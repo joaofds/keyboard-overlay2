@@ -5,49 +5,123 @@
 		xmlns:colorpicker="clr-namespace:AvaloniaColorPicker;assembly=AvaloniaColorPicker"
         xmlns:vm="using:KeyboardOverlay.ViewModels"
         mc:Ignorable="d"
-		MaxWidth="400" MinWidth="400" MaxHeight="480" MinHeight="480"
+		MaxWidth="400" MinWidth="400" MaxHeight="380" MinHeight="350"
         x:Class="KeyboardOverlay.Views.SettingsWindow"
         x:DataType="vm:SettingsWindowViewModel"
 		WindowStartupLocation="CenterOwner"
         Icon="/Assets/avalonia-logo.ico"
-		Background="#313338"
+		Background="#272727"
         Title="Settings">
 
 	<Window.Styles>
 		<StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Simple/Simple.xaml" />
-		
+
+		<!-- ColorPick -->
 		<Style Selector="ColorPicker">
 			<Setter Property="IsColorPaletteVisible" Value="False"/>
 			<Setter Property="IsColorPreviewVisible" Value="False"/>
 			<Setter Property="IsColorComponentsVisible" Value="False"/>
 			<Setter Property="IsAlphaVisible" Value="False"/>
 			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="HorizontalAlignment" Value="Right"></Setter>
+			<Setter Property="Margin" Value="0 0 12 0"></Setter>
+		</Style>
+
+
+		<!-- Dialog Group -->
+		<Style Selector="Border.dialog_group">
+			<Setter Property="Width" Value="380"/>
+			<Setter Property="Background" Value="#1d1d1d"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="BorderBrush" Value="#313131"/>
+			<Setter Property="CornerRadius" Value="8"/>
+		</Style>
+		
+		<Style Selector="Border.header_wrap">
+			<Setter Property="Margin" Value="0 16 0 8"/>
+		</Style>
+
+		<Style Selector="TextBlock.dialog_section_header">
+			<Setter Property="FontSize" Value="16"></Setter>
+			<Setter Property="FontWeight" Value="500"></Setter>
+		</Style>
+
+		<Style Selector="Panel.dialog_section">
+			<Setter Property="Margin" Value="12 4 0 4"/>
+		</Style>
+
+		<Style Selector="TextBlock.dialog_section_label">
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="FontWeight" Value="400"></Setter>
+		</Style>
+
+		<Style Selector="Border.dialog_footer">
+			<Setter Property="Background" Value="#1d1d1d"/>
+			<Setter Property="Height" Value="50"/>
+		</Style>
+
+		<Style Selector="StackPanel.dialog_footer_buttons">
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
 		</Style>
 	</Window.Styles>
 
-	<Grid ColumnDefinitions="Auto,Auto,Auto,Auto" ShowGridLines="False" Margin="0 0 0 0" HorizontalAlignment="Center">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
 
-		<WrapPanel Grid.Row="0" Grid.Column="0">
-			<TextBlock Text="Cor da Fonte: "/>
-			<ColorPicker x:Name="SelectedFontColor"/>
-		</WrapPanel>
 
-		<WrapPanel Grid.Row="1" Grid.Column="0">
-			<TextBlock Text="Cor do Fundo: "/>
-			<ColorPicker x:Name="SelectedBackColor"/>
-		</WrapPanel>
+
+	<DockPanel HorizontalAlignment="Center">
+
+		<!-- Control buttons -->
+		<Border Classes="dialog_footer" BoxShadow="0 0 0 12 #1d1d1d" DockPanel.Dock="Bottom">
+			<StackPanel Orientation="Horizontal" Classes="dialog_footer_buttons">
+				<Button Click="OnCancelButtonClick" Content="Cancelar"/>
+				<Button Click="OnSaveButtonClick" Content="Salvar"/>
+			</StackPanel>
+		</Border>
 		
-		<WrapPanel Grid.Row="2" Grid.Column="0">
-			<TextBlock Text="Cor do Hover: "/>
-			<ColorPicker x:Name="SelectedHoverColor"/>
-		</WrapPanel>
+		<ScrollViewer>
+			<StackPanel Classes="Dialog_ContentPanel_WithItemsGroups">
 
-		<Button Grid.Row="3" Click="Btn_Event_Test">Cick Me</Button>
-	</Grid>
+				<!-- Colors -->
+				<StackPanel Classes="dialog_group">
+					<Border Classes="header_wrap">
+						<TextBlock Classes="dialog_section_header" Text="Cores"/>
+					</Border>
+					<Border Classes="dialog_group">
+						<StackPanel>
+
+							<!-- Font color -->
+							<Panel Classes="dialog_section">
+								<TextBlock Classes="dialog_section_label" Text="Cor da Fonte: "/>
+								<ColorPicker Color="{Binding FontColor}" x:Name="SelectedFontColor"/>
+							</Panel>
+							<Separator Classes="Dialog_Item_Separator"/>
+
+							<!-- Background color -->
+							<Panel Classes="dialog_section">
+								<TextBlock Classes="dialog_section_label" Text="Cor do Fundo: "/>
+								<ColorPicker x:Name="SelectedBackColor"/>
+							</Panel>
+							<Separator Classes="Dialog_Item_Separator"/>
+
+							<!-- Hover color -->
+							<Panel Classes="dialog_section">
+								<TextBlock Classes="dialog_section_label" Text="Cor do Hover: "/>
+								<ColorPicker x:Name="SelectedHoverColor"/>
+							</Panel>
+							<Separator Classes="Dialog_Item_Separator"/>
+
+							<!-- Border color -->
+							<Panel Classes="dialog_section">
+								<TextBlock Classes="dialog_section_label" Text="Cor do Hover: "/>
+								<ColorPicker Color="{Binding BorderColor}" x:Name="SelectedBorderColor"/>
+							</Panel>
+							
+						</StackPanel>
+					</Border>
+				</StackPanel>
+			</StackPanel>
+		</ScrollViewer>
+	</DockPanel>
 </Window>

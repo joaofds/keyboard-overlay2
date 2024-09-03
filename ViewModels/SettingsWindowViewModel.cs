@@ -1,8 +1,12 @@
-﻿namespace KeyboardOverlay.ViewModels;
+﻿using Avalonia.Media;
+using KeyboardOverlay.Services;
+
+namespace KeyboardOverlay.ViewModels;
 
 public partial class SettingsWindowViewModel : ViewModelBase
 {
-#pragma warning disable CA1822 // Mark members as static
-
-#pragma warning restore CA1822 // Mark members as static
+    public SolidColorBrush FontColor => SettingsService.FontColor;
+    public SolidColorBrush BorderColor => SettingsService.BorderColor;
+    public SolidColorBrush BackgroundColor => SettingsService.BackgroundColor;
+    public SolidColorBrush HoverColor => SettingsService.HoverColor;
 }

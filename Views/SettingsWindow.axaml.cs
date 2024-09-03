@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.IO;
 using KeyboardOverlay.Views;
+using KeyboardOverlay.ViewModels;
 
 namespace KeyboardOverlay.Views
 {
@@ -18,7 +19,7 @@ namespace KeyboardOverlay.Views
         }
 
         // Método que pode ser chamado ao clicar no botão de salvar configurações
-        private void OnSaveSettingsButtonClick(object sender, RoutedEventArgs e)
+        private void OnSaveButtonClick(object sender, RoutedEventArgs e)
         {
             var newSettings = new AppSettings
             {
@@ -31,13 +32,34 @@ namespace KeyboardOverlay.Views
             //_settingsService.ApplySettings(newSettings);
         }
 
+        private void OnCancelButtonClick(object? sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
         public void Btn_Event_Test(object? source, RoutedEventArgs e)
         {
             var appSettings = SettingsService.appSettings;
-            var SelectedFontColor = this.SelectedFontColor;
 
-            Debug.Print(SelectedFontColor.HsvColor);
+            // Converte cor para string removendo canal alpha
+            var SelectedFontColor = this.SelectedFontColor.Color.ToString().Remove(1,2);
+            var SelectedHoverColor = this.SelectedHoverColor.Color.ToString().Remove(1,2);
+            var SelectedBackColor = this.SelectedBackColor.Color.ToString().Remove(1,2);
+            var SelectedBorderColor = this.SelectedBorderColor.Color.ToString().Remove(1,2);
+
+            Debug.WriteLine(SelectedFontColor);
+            Debug.WriteLine(SelectedHoverColor);
+            Debug.WriteLine(SelectedBackColor);
+            Debug.WriteLine(SelectedBorderColor);
+
+            /*
+            appSettings!.FontColor= SelectedFontColor;
+            appSettings!.HoverColor = SelectedHoverColor;
+            appSettings!.BackgroundColor = SelectedBackColor;
+            appSettings!.BorderColor = SelectedBorderColor;
+            */
             
+
         }
     }
 }
