@@ -75,6 +75,7 @@
 		<!-- Control buttons -->
 		<Border Classes="dialog_footer" BoxShadow="0 0 0 12 #1d1d1d" DockPanel.Dock="Bottom">
 			<StackPanel Orientation="Horizontal" Classes="dialog_footer_buttons">
+				<Button Click="OnDefaultButtonClick" Content="Restaurar"/>
 				<Button Click="OnCancelButtonClick" Content="Cancelar"/>
 				<Button Click="OnSaveButtonClick" Content="Salvar"/>
 			</StackPanel>

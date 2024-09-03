@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using KeyboardOverlay.Views;
 using KeyboardOverlay.ViewModels;
+using System.IO.Enumeration;
 
 namespace KeyboardOverlay.Views
 {
@@ -18,17 +19,30 @@ namespace KeyboardOverlay.Views
             InitializeComponent();
 
             // Preenche cores atuais no ColorPick
-            var appSettings = SettingsService.appSettings;
+            SettingsService settingsService = new SettingsService();
+            var appSettings = settingsService.LoadSettings();
             this.SelectedFontColor.Color = Color.Parse(appSettings!.FontColor!.ToString());
             this.SelectedBackgroundColor.Color = Color.Parse(appSettings!.BackgroundColor!.ToString());
             this.SelectedHoverColor.Color = Color.Parse(appSettings!.HoverColor!.ToString());
             this.SelectedBorderColor.Color = Color.Parse(appSettings!.BorderColor!.ToString());
         }
 
+        private void OnDefaultButtonClick(object? sender, RoutedEventArgs e)
+        {
+            var file = "config.json";
+            if (File.Exists(file))
+            {
+                File.Delete(file);
+            }
+
+            this.Close();
+        }
+
         // Método que pode ser chamado ao clicar no botão de salvar configurações
         private void OnSaveButtonClick(object sender, RoutedEventArgs e)
         {
-            AppSettings? _appSettings = SettingsService.appSettings;
+            //
+            AppSettings _appSettings = new SettingsService().LoadSettings();
             MainWindow _mainWindow = new MainWindow();
             SettingsService _settingsService = new SettingsService();
 
@@ -38,11 +52,6 @@ namespace KeyboardOverlay.Views
             var SelectedHoverColor = this.SelectedHoverColor.Color.ToString();
             var SelectedBackgroundColor = this.SelectedBackgroundColor.Color.ToString();
             var SelectedBorderColor = this.SelectedBorderColor.Color.ToString();
-
-            Debug.WriteLine(SelectedFontColor);
-            Debug.WriteLine(SelectedHoverColor);
-            Debug.WriteLine(SelectedBackgroundColor);
-            Debug.WriteLine(SelectedBorderColor);
 
 
             _appSettings!.FontColor = SelectedFontColor;
@@ -65,8 +74,11 @@ namespace KeyboardOverlay.Views
 
             _settingsService.SaveSettings(newSettings);
             //_settingsService.ApplySettings(newSettings);
+
+            this.Close();
         }
 
+        // Fecha janela
         private void OnCancelButtonClick(object? sender, RoutedEventArgs e)
         {
             this.Close();
