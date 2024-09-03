@@ -28,35 +28,42 @@ namespace KeyboardOverlay.Views
         // Método que pode ser chamado ao clicar no botão de salvar configurações
         private void OnSaveButtonClick(object sender, RoutedEventArgs e)
         {
-            var appSettings = SettingsService.appSettings;
+            AppSettings? _appSettings = SettingsService.appSettings;
+            MainWindow _mainWindow = new MainWindow();
+            SettingsService _settingsService = new SettingsService();
+
 
             // Converte cor para string removendo canal alpha
-            var SelectedFontColor = this.SelectedFontColor.Color.ToString().Remove(1, 2);
-            var SelectedHoverColor = this.SelectedHoverColor.Color.ToString().Remove(1, 2);
-            var SelectedBackgroundColor = this.SelectedBackgroundColor.Color.ToString().Remove(1, 2);
-            var SelectedBorderColor = this.SelectedBorderColor.Color.ToString().Remove(1, 2);
+            var SelectedFontColor = this.SelectedFontColor.Color.ToString();
+            var SelectedHoverColor = this.SelectedHoverColor.Color.ToString();
+            var SelectedBackgroundColor = this.SelectedBackgroundColor.Color.ToString();
+            var SelectedBorderColor = this.SelectedBorderColor.Color.ToString();
 
             Debug.WriteLine(SelectedFontColor);
             Debug.WriteLine(SelectedHoverColor);
             Debug.WriteLine(SelectedBackgroundColor);
             Debug.WriteLine(SelectedBorderColor);
 
-            /*
-            appSettings!.FontColor= SelectedFontColor;
-            appSettings!.HoverColor = SelectedHoverColor;
-            appSettings!.BackgroundColor = SelectedBackgroundColor;
-            appSettings!.BorderColor = SelectedBorderColor;
-            */
 
+            _appSettings!.FontColor = SelectedFontColor;
+            _appSettings!.HoverColor = SelectedHoverColor;
+            _appSettings!.BackgroundColor = this.SelectedBackgroundColor.Color.ToString();
+            _appSettings!.BorderColor = SelectedBorderColor;
+
+            // Altera backgound da janela principal.... eu acho kkkkkkkkk (com this.Background funciona)
+            _mainWindow.Background = new SolidColorBrush(Color.Parse(this.SelectedBackgroundColor.Color.ToString()));
+
+            
             var newSettings = new AppSettings
             {
-                FontColor = this.SelectedFontColor.Color.ToString().Remove(1, 2),
-                BorderColor = this.SelectedBorderColor.Color.ToString().Remove(1, 2),
-                BackgroundColor = this.SelectedBackgroundColor.Color.ToString().Remove(1, 2),
-                HoverColor = this.SelectedHoverColor.Color.ToString().Remove(1, 2)
+                FontColor = this.SelectedFontColor.Color.ToString(),
+                BorderColor = this.SelectedBorderColor.Color.ToString(),
+                BackgroundColor = this.SelectedBackgroundColor.Color.ToString(),
+                HoverColor = this.SelectedHoverColor.Color.ToString()
             };
+            
 
-            //_settingsService.SaveSettings(newSettings);
+            _settingsService.SaveSettings(newSettings);
             //_settingsService.ApplySettings(newSettings);
         }
 
