@@ -1684,11 +1684,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\projetos\\c#\\keyboard-overlay2\\KeyboardOverlay.csproj",
+      "projectUniqueName": "D:\\projetos\\cs\\keyboard-overlay2\\KeyboardOverlay.csproj",
       "projectName": "KeyboardOverlay",
-      "projectPath": "D:\\projetos\\c#\\keyboard-overlay2\\KeyboardOverlay.csproj",
+      "projectPath": "D:\\projetos\\cs\\keyboard-overlay2\\KeyboardOverlay.csproj",
       "packagesPath": "C:\\Users\\3386349\\.nuget\\packages\\",
-      "outputPath": "D:\\projetos\\c#\\keyboard-overlay2\\obj\\",
+      "outputPath": "D:\\projetos\\cs\\keyboard-overlay2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\3386349\\AppData\\Roaming\\NuGet\\NuGet.Config",
