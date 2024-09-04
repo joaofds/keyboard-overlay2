@@ -83,7 +83,7 @@
 				Grid.Column="2" 
 				HorizontalAlignment="Right"
 				Focusable="False">
-			<PathIcon Classes="settings_regular" Data="{StaticResource settings_regular}" />
+			<PathIcon x:Name="settingsIcon" Classes="settings_regular" Data="{StaticResource settings_regular}" />
 		</Button>
 		<!--Button Settings-->
 

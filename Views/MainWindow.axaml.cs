@@ -107,10 +107,11 @@ public partial class MainWindow : Window
 
     private void SettingsButton_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        var settingsWindow = new SettingsWindow();
+        var settingsWindow = new SettingsWindow(this);
         settingsWindow.ShowDialog(this);
     }
 
+    // Retorna dicionario de teclas
     public Dictionary<Key, Border> GetKeys()
     {
         return keyButtonMap;

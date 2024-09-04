@@ -95,28 +95,28 @@
 							<!-- Font color -->
 							<Panel Classes="dialog_section">
 								<TextBlock Classes="dialog_section_label" Text="Cor da Fonte: "/>
-								<ColorPicker Color="{Binding FontColor}" x:Name="SelectedFontColor"/>
+								<ColorPicker PropertyChanged="ChangeColorOnColorpickChanged" Color="{Binding FontColor}" x:Name="SelectedFontColor"/>
 							</Panel>
 							<Separator Classes="Dialog_Item_Separator"/>
 
 							<!-- Background color -->
 							<Panel Classes="dialog_section">
 								<TextBlock Classes="dialog_section_label" Text="Cor da Janela: "/>
-								<ColorPicker Color="{Binding BackgroundColor}" x:Name="SelectedBackgroundColor"/>
+								<ColorPicker PropertyChanged="ChangeColorOnColorpickChanged" Color="{Binding BackgroundColor}" x:Name="SelectedBackgroundColor"/>
 							</Panel>
 							<Separator Classes="Dialog_Item_Separator"/>
 
 							<!-- Hover color -->
 							<Panel Classes="dialog_section">
-								<TextBlock Classes="dialog_section_label" Text="Cor do Hover: "/>
-								<ColorPicker Color="{Binding HoverColor}" x:Name="SelectedHoverColor"/>
+								<TextBlock Classes="dialog_section_label" Text="Cor ao Pressionar Tecla: "/>
+								<ColorPicker PropertyChanged="ChangeColorOnColorpickChanged" Color="{Binding HoverColor}" x:Name="SelectedHoverColor"/>
 							</Panel>
 							<Separator Classes="Dialog_Item_Separator"/>
 
 							<!-- Border color -->
 							<Panel Classes="dialog_section">
 								<TextBlock Classes="dialog_section_label" Text="Cor da Borda: "/>
-								<ColorPicker Color="{Binding BorderColor}" x:Name="SelectedBorderColor"/>
+								<ColorPicker PropertyChanged="ChangeColorOnColorpickChanged" Color="{Binding BorderColor}" x:Name="SelectedBorderColor"/>
 							</Panel>
 							
 						</StackPanel>

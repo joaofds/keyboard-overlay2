@@ -23,8 +23,6 @@ namespace KeyboardOverlay.Services
 
                 // Faz o parse do arquivo, armazena e retorna
                 var settings = JsonConvert.DeserializeObject<AppSettings>(json);
-                ApplySettings(settings!);
-            
                 appSettings = settings;
                 
                 return settings!;
@@ -39,28 +37,10 @@ namespace KeyboardOverlay.Services
                 HoverColor = "#05a1a1"
             };
             SaveSettings(defaultSettings);
-            ApplySettings(defaultSettings);
 
             appSettings = defaultSettings;
 
             return defaultSettings;
-        }
-
-
-        // Aplica modificações em tempo real
-        public void ApplySettings(AppSettings settings)
-        {
-            // Exemplo de aplicação das configurações de cor em elementos da interface
-            
-            var fontColorBrush = new SolidColorBrush(Color.Parse(settings.FontColor!));
-            var borderColorBrush = new SolidColorBrush(Color.Parse(settings.BorderColor!));
-            var backgroundColorBrush = new SolidColorBrush(Color.Parse(settings.BackgroundColor!));
-
-            // Aqui podemos aplicar as cores aos elementos da interface
-            // Exemplo:
-            // this.SomeTextBlock.Foreground = fontColorBrush;
-            // this.SomeBorder.BorderBrush = borderColorBrush;
-            // this.SomePanel.Background = backgroundColorBrush;
         }
 
         // Salva arquivo de configuração
@@ -68,6 +48,8 @@ namespace KeyboardOverlay.Services
         {
             var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
             File.WriteAllText(ConfigFilePath, json);
+
+            this.LoadSettings();
         }
 
         // Metodos que retornam configurações
