@@ -4,8 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="600"
-		Width="600" Height="240" 
-		MaxWidth="600" MinWidth="600" MaxHeight="240" MinHeight="240"
+		MaxWidth="490" MinWidth="490" MaxHeight="240" MinHeight="240"
         x:Class="KeyboardOverlay.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
 		WindowStartupLocation="CenterOwner"
@@ -24,8 +23,8 @@
 
 		<!--Keys-->
 		<Style Selector="Border.keyButton">
-			<Setter Property="Width" Value="50"/>
-			<Setter Property="Height" Value="50"/>
+			<Setter Property="Width" Value="32"/>
+			<Setter Property="Height" Value="32"/>
 			<Setter Property="Margin" Value="5 0 0 4"/>
 			<Setter Property="BorderBrush" Value="{Binding BorderColor}"/>
 			<Setter Property="BorderThickness" Value="2"/>
@@ -33,7 +32,7 @@
 		</Style>
 		
 		<Style Selector="TextBlock.keyText">
-			<Setter Property="FontSize" Value="38"/>
+			<Setter Property="FontSize" Value="20"/>
 			<Setter Property="Foreground" Value="{Binding FontColor}"/>
 			<Setter Property="FontWeight" Value="Bold"/>
 			<Setter Property="TextAlignment" Value="Center"/>
@@ -67,12 +66,13 @@
 		<!--Button Styles-->
 	</Window.Styles>
 
-	<Grid ColumnDefinitions="Auto,auto,Auto" ShowGridLines="False" Margin="16 16 0 0">
+	<Grid ColumnDefinitions="Auto,auto,Auto,Auto" ShowGridLines="False" Margin="16 16 0 0">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="48"/>
-			<RowDefinition Height="auto"/>
-			<RowDefinition Height="auto"/>
-			<RowDefinition Height="auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
 		<!--Button Settings-->
@@ -89,6 +89,9 @@
 
 		<!--QWERT-->
 		<WrapPanel Grid.Row="1">
+			<Border x:Name="tabButton" Classes="keyButton" Width="38">
+				<TextBlock Classes="keyText" Text="TAB" FontSize="9"/>
+			</Border>
 			<Border x:Name="qButton" Classes="keyButton">
 				<TextBlock Classes="keyText" Text="Q"/>
 			</Border>
@@ -108,7 +111,7 @@
 		<!--QWERT-->
 
 		<!--ASDF-->
-		<WrapPanel Grid.Row="2" Margin="28 0 0 0">
+		<WrapPanel Grid.Row="2" Margin="52 0 0 0">
 			<Border x:Name="aButton" Classes="keyButton">
 				<TextBlock Classes="keyText" Text="A"/>
 			</Border>
@@ -124,9 +127,39 @@
 		</WrapPanel>
 		<!--ASDF-->
 
+		<!--ZXCV-->
+		<WrapPanel Grid.Row="3">
+			<Border x:Name="shiftButton" Classes="keyButton" Width="58">
+				<TextBlock Classes="keyText" Text="SHIFT" FontSize="9"/>
+			</Border>
+			<Border x:Name="zButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="Z"/>
+			</Border>
+			<Border x:Name="xButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="X"/>
+			</Border>
+			<Border x:Name="cButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="C"/>
+			</Border>
+			<Border x:Name="vButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="V"/>
+			</Border>
+		</WrapPanel>
+		<!--ZXCV-->
+
 		<!--SPACE-->
-		<WrapPanel HorizontalAlignment="Right" Margin="100 0 0 0" Grid.Row="3">
-			<Border x:Name="spaceButton" Classes="keyButton" Grid.Row="2" Width="220">
+		
+		<WrapPanel HorizontalAlignment="Right"  Grid.Row="4">
+			<Border x:Name="ctrlButton" Classes="keyButton" Width="32">
+				<TextBlock Classes="keyText" Text="Ctrl" FontSize="9"/>
+			</Border>
+			<Border Classes="keyButton">
+				<TextBlock Classes="keyText"/>
+			</Border>
+			<Border x:Name="altButton" Classes="keyButton">
+				<TextBlock Classes="keyText" Text="Alt" FontSize="9"/>
+			</Border>
+			<Border x:Name="spaceButton" Classes="keyButton" Grid.Row="2" Width="160">
 				<TextBlock Classes="keyText" Text=""/>
 			</Border>
 		</WrapPanel>

@@ -21,36 +21,10 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         InitializeKeyButtonMap();
+
+        // Carrega configuracoes ao abrir janela
         var SettingsService = new SettingsService();
         SettingsService.LoadSettings();
-
-        /*
-        if (File.Exists(ConfigFilePath))
-        {
-            // Lê arquivo
-            var json = File.ReadAllText(ConfigFilePath);
-
-            // Converte o json
-            var config = JsonConvert.DeserializeObject<AppSettings>(json);
-                
-            // Atribui para Config
-            Config = config;
-
-            // Troca as cores
-            this.Background = new SolidColorBrush(Color.Parse(config?.BackgroundColor!));
-            settingsButton.BorderBrush = new SolidColorBrush(Color.Parse(config?.BorderColor!));
-
-            foreach (var button in keyButtonMap.Values)
-            {
-                button.BorderBrush = new SolidColorBrush(Color.Parse(config?.BorderColor!));
-
-                if (button.Child is TextBlock textBlock)
-                {
-                    textBlock.Foreground = new SolidColorBrush(Color.Parse(config?.FontColor!));
-                }
-            }
-        }
-        */
 
         // Registra manipuladores de eventos
         this.AddHandler(KeyDownEvent, Main_Window_KeyDown, handledEventsToo: true);
@@ -81,7 +55,15 @@ public partial class MainWindow : Window
                 {Key.NumPad6, numpad6 },
                 {Key.NumPad7, numpad7 },
                 {Key.NumPad8, numpad8 },
-                {Key.NumPad9, numpad9 }
+                {Key.Tab, tabButton },
+                {Key.LeftShift, shiftButton},
+                {Key.Z, zButton},
+                {Key.X, xButton},
+                {Key.C, cButton},
+                {Key.V, vButton},
+                {Key.LeftCtrl, ctrlButton},
+                {Key.LeftAlt, altButton}
+
             };
     }
 
