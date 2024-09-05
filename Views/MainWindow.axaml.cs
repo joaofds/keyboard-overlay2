@@ -6,6 +6,7 @@ using Avalonia.Media;
 using System.IO;
 using Newtonsoft.Json;
 using KeyboardOverlay.Services;
+using System.Diagnostics;
 
 namespace KeyboardOverlay.Views;
 
@@ -13,6 +14,7 @@ public partial class MainWindow : Window
 {
     // Dicionario para guardar teclas.
     private Dictionary<Key, Border> keyButtonMap = null!;
+    private Dictionary<MouseButton, Border> MouseButtonMap = null!;
 
     // Guarda configurações atuais
     public AppSettings? Config = null;
@@ -21,18 +23,24 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         InitializeKeyButtonMap();
+        InitializeMouseButtonMap();
 
         // Carrega configuracoes ao abrir janela
         var SettingsService = new SettingsService();
         SettingsService.LoadSettings();
 
         // Registra manipuladores de eventos
+        // Keys
         this.AddHandler(KeyDownEvent, Main_Window_KeyDown, handledEventsToo: true);
         this.AddHandler(KeyUpEvent, Main_Window_KeyUp, handledEventsToo: true);
 
+        // Mouse events
+        this.AddHandler(PointerPressedEvent, MainWindowMouseDown, handledEventsToo: true);
+        this.AddHandler(PointerReleasedEvent, MainWindowMouseUp, handledEventsToo: true);
+
     }
 
-    // Metodo que faz o mapeamento das teclas
+    // Mapeamento das teclas
     private void InitializeKeyButtonMap()
     {
         keyButtonMap = new Dictionary<Key, Border>
@@ -63,7 +71,16 @@ public partial class MainWindow : Window
                 {Key.V, vButton},
                 {Key.LeftCtrl, ctrlButton},
                 {Key.LeftAlt, altButton}
+            };
+    }
 
+    // Mapeamento do mouse
+    private void InitializeMouseButtonMap()
+    {
+        MouseButtonMap = new Dictionary<MouseButton, Border>
+            {
+                {MouseButton.Left, leftMouseButton },
+                {MouseButton.Right, rightMouseButton },
             };
     }
 
@@ -87,11 +104,42 @@ public partial class MainWindow : Window
         }
     }
 
+    // Botao que abre configuracoes
     private void SettingsButton_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         var settingsWindow = new SettingsWindow(this);
         settingsWindow.ShowDialog(this);
     }
+
+    // Mouse pressed event
+    private void MainWindowMouseDown(object? sender, PointerPressedEventArgs e)
+    {
+        var properties = e.GetCurrentPoint(this).Properties;
+
+        // Verifica o botão pressionado diretamente
+        if (properties.IsLeftButtonPressed)
+        {
+            if (MouseButtonMap.ContainsKey(MouseButton.Left))
+            {
+                MouseButtonMap[MouseButton.Left].Background = SettingsService.HoverColor;
+            }
+        }
+        else if (properties.IsRightButtonPressed)
+        {
+            if (MouseButtonMap.ContainsKey(MouseButton.Right))
+            {
+                MouseButtonMap[MouseButton.Right].Background = SettingsService.HoverColor;
+            }
+        }
+    }
+
+    // Mouse released event
+    private void MainWindowMouseUp(object? sender, PointerReleasedEventArgs e)
+    {
+        Debug.WriteLine("release click");
+
+    }
+
 
     // Retorna dicionario de teclas
     public Dictionary<Key, Border> GetKeys()

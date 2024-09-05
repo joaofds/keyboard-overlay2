@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="600"
-		MaxWidth="490" MinWidth="490" MaxHeight="240" MinHeight="240"
+		MaxWidth="526" MinWidth="526" MaxHeight="240" MinHeight="240"
         x:Class="KeyboardOverlay.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
 		WindowStartupLocation="CenterOwner"
@@ -19,7 +19,6 @@
 	<Window.Styles>
 		<!--Icons-->
 		<StyleInclude Source="avares://KeyboardOverlay/Icons.axaml"/>
-		<!--Icons-->
 
 		<!--Keys-->
 		<Style Selector="Border.keyButton">
@@ -39,13 +38,11 @@
 			<Setter Property="HorizontalAlignment" Value="Center"/>
 			<Setter Property="VerticalAlignment" Value="Center"/>
 		</Style>
-		<!--Keys-->
 
 		<!--Numpad-->
 		<Style Selector="WrapPanel.numpad">
-			<Setter Property="Margin" Value="60 0 0 0"/>
+			<Setter Property="Margin" Value="20 0 0 0"/>
 		</Style>
-		<!--Numpad-->
 
 		<!--Button Styles-->
 		<Style Selector="Button">
@@ -63,12 +60,13 @@
 		<Style Selector="PathIcon.settings_regular">
 			<Setter Property="Foreground" Value="{Binding FontColor}"></Setter>
 		</Style>
-		<!--Button Styles-->
 	</Window.Styles>
 
-	<Grid ColumnDefinitions="Auto,auto,Auto,Auto" ShowGridLines="False" Margin="16 16 0 0">
+	<!--Content-->
+	<Grid ColumnDefinitions="Auto,auto,Auto,Auto,Auto" ShowGridLines="False" Margin="16 16 0 0">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="48"/>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
@@ -80,12 +78,12 @@
 				Click="SettingsButton_Click" 
 				Classes="settingsButton" 
 				Width="38" Grid.Row="0" 
-				Grid.Column="2" 
+				Grid.Column="3" 
 				HorizontalAlignment="Right"
 				Focusable="False">
 			<PathIcon x:Name="settingsIcon" Classes="settings_regular" Data="{StaticResource settings_regular}" />
 		</Button>
-		<!--Button Settings-->
+
 
 		<!--QWERT-->
 		<WrapPanel Grid.Row="1">
@@ -108,7 +106,7 @@
 				<TextBlock Classes="keyText" Text="T"/>
 			</Border>
 		</WrapPanel>
-		<!--QWERT-->
+
 
 		<!--ASDF-->
 		<WrapPanel Grid.Row="2" Margin="52 0 0 0">
@@ -125,9 +123,9 @@
 				<TextBlock Classes="keyText" Text="F"/>
 			</Border>
 		</WrapPanel>
-		<!--ASDF-->
 
-		<!--ZXCV-->
+
+		<!--Shift ZXCV-->
 		<WrapPanel Grid.Row="3">
 			<Border x:Name="shiftButton" Classes="keyButton" Width="58">
 				<TextBlock Classes="keyText" Text="SHIFT" FontSize="9"/>
@@ -145,10 +143,9 @@
 				<TextBlock Classes="keyText" Text="V"/>
 			</Border>
 		</WrapPanel>
-		<!--ZXCV-->
 
-		<!--SPACE-->
-		
+
+		<!--SPACE Row-->
 		<WrapPanel HorizontalAlignment="Right"  Grid.Row="4">
 			<Border x:Name="ctrlButton" Classes="keyButton" Width="32">
 				<TextBlock Classes="keyText" Text="Ctrl" FontSize="9"/>
@@ -159,14 +156,14 @@
 			<Border x:Name="altButton" Classes="keyButton">
 				<TextBlock Classes="keyText" Text="Alt" FontSize="9"/>
 			</Border>
-			<Border x:Name="spaceButton" Classes="keyButton" Grid.Row="2" Width="160">
+			<Border x:Name="spaceButton" Classes="keyButton" Grid.Row="2" Width="130">
 				<TextBlock Classes="keyText" Text=""/>
 			</Border>
 		</WrapPanel>
-		<!--SPACE-->
+
 
 		<!--NUMPAD-->
-		<WrapPanel Grid.Row="3" Grid.Column="2" Classes="numpad">
+		<WrapPanel Grid.Row="3" Grid.Column="3" Classes="numpad">
 			<Border x:Name="numpad1" Classes="keyButton">
 				<TextBlock Classes="keyText" Text="1"/>
 			</Border>
@@ -178,7 +175,7 @@
 			</Border>
 		</WrapPanel>
 
-		<WrapPanel Grid.Row="2" Grid.Column="2" Classes="numpad">
+		<WrapPanel Grid.Row="2" Grid.Column="3" Classes="numpad">
 			<Border x:Name="numpad4" Classes="keyButton">
 				<TextBlock Classes="keyText" Text="4"/>
 			</Border>
@@ -190,7 +187,7 @@
 			</Border>
 		</WrapPanel>
 
-		<WrapPanel Grid.Row="1" Grid.Column="2" Classes="numpad">
+		<WrapPanel Grid.Row="1" Grid.Column="3" Classes="numpad">
 			<Border x:Name="numpad7" Classes="keyButton">
 				<TextBlock Classes="keyText" Text="7"/>
 			</Border>
@@ -201,7 +198,55 @@
 				<TextBlock Classes="keyText" Text="9"/>
 			</Border>
 		</WrapPanel>
-		<!--NUMPAD-->
-	</Grid>
 
+
+		<!--MOUSE-->
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">
+			<!-- Mouse Body -->
+			<Border Width="100" 
+					Height="150" 
+					Background="LightGray" 
+					CornerRadius="50">
+				<Grid>
+					<!-- Divide os botões em duas colunas -->
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Left Button -->
+					<Border x:Name="leftMouseButton"
+							Grid.Column="0" 
+							Width="48" 
+							Height="70" 
+							Background="Gray" 
+							CornerRadius="50 0 0 0" 
+							HorizontalAlignment="Stretch" 
+							VerticalAlignment="Top" 
+							Margin="0 1 0 0"/>
+
+					<!-- Right Button -->
+					<Border x:Name="rightMouseButton"
+							Grid.Column="1" 
+							Width="48" 
+							Height="70" 
+							Background="Gray" 
+							CornerRadius="0 50 0 0" 
+							HorizontalAlignment="Stretch" 
+							VerticalAlignment="Top" 
+							Margin="0 1 0 0" />
+
+					<!-- Linha de rolagem no meio -->
+					<Border Grid.ColumnSpan="2" 
+							Width="20" 
+							Height="38" 
+							Background="DarkGray" 
+							CornerRadius="10" 
+							HorizontalAlignment="Center" 
+							VerticalAlignment="Top" 
+							Margin="0,40,0,0"/>
+				</Grid>
+			</Border>
+		</StackPanel>
+	</Grid>
 </Window>
